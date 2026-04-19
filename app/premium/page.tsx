@@ -496,7 +496,8 @@ function TierCard({
     <SketchCard
       variant="paper"
       tilt={tilt}
-      className={cn("!p-4 h-full relative", bg, highlight && "tape")}
+      tape={highlight}
+      className={cn("!p-4 h-full relative", bg)}
     >
       {highlight && (
         <div className="absolute -top-2 -right-2 px-2 py-0.5 bg-phoenix-flame text-white border-[2px] border-ink rounded-full font-hand text-xs rotate-6">
