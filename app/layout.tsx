@@ -53,7 +53,9 @@ export const metadata: Metadata = {
       "AI companion for fashion, food & mental wellness. Sketched with love, powered by Grok.",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/phoenix-logo.jpg",
+    shortcut: "/phoenix-logo.jpg",
+    apple: "/phoenix-logo.jpg",
   },
 };
 

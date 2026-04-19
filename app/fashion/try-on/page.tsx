@@ -35,6 +35,7 @@ const SCENE_PRESETS = [
 export default function TryOnPage() {
   const [personImage, setPersonImage] = useState<string | null>(null);
   const [outfitImage, setOutfitImage] = useState<string | null>(null);
+  const [keepBackground, setKeepBackground] = useState(true);
   const [scene, setScene] = useState(SCENE_PRESETS[0].value);
   const [customScene, setCustomScene] = useState("");
   const [loading, setLoading] = useState(false);
@@ -53,7 +54,8 @@ export default function TryOnPage() {
         body: JSON.stringify({
           personImage,
           outfitImage,
-          scene: customScene.trim() || scene,
+          keepBackground,
+          scene: keepBackground ? "" : (customScene.trim() || scene),
         }),
       });
       const data = await res.json();
@@ -125,39 +127,75 @@ export default function TryOnPage() {
             </SketchCard>
           </div>
 
-          {/* Scene picker */}
+          {/* Background / Scene picker */}
           <SketchCard variant="paper" className="!p-5 mb-5 bg-phoenix-gold/10">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles size={18} className="text-phoenix-gold" />
               <SketchHeading as="h3" font="scribble" className="!text-xl">
-                Step 3 · pick the vibe
+                Step 3 · background
               </SketchHeading>
             </div>
-            <div className="flex flex-wrap gap-2 mb-3">
-              {SCENE_PRESETS.map((p) => (
-                <button
-                  key={p.label}
-                  onClick={() => {
-                    setScene(p.value);
-                    setCustomScene("");
-                  }}
-                  className={`px-4 py-2 border-[2px] border-ink rounded-full font-hand transition ${
-                    scene === p.value && !customScene
-                      ? "bg-phoenix-flame text-white shadow-[3px_3px_0_#1a1a1a]"
-                      : "bg-paper-cream hover:bg-paper-dark"
-                  }`}
-                  style={{ filter: "url(#sketch-roughen)" }}
-                >
-                  {p.label}
-                </button>
-              ))}
+
+            {/* Toggle */}
+            <div className="flex gap-2 mb-4">
+              <button
+                onClick={() => setKeepBackground(true)}
+                className={`px-4 py-2 border-[2.5px] border-ink rounded-[14px_22px_16px_24px/20px_16px_22px_14px] font-scribble text-base transition ${
+                  keepBackground
+                    ? "bg-phoenix-flame text-white shadow-[3px_3px_0_#1a1a1a]"
+                    : "bg-paper-cream hover:bg-paper-dark"
+                }`}
+                style={{ filter: "url(#sketch-roughen)" }}
+              >
+                🪞 Keep same background + pose
+              </button>
+              <button
+                onClick={() => setKeepBackground(false)}
+                className={`px-4 py-2 border-[2.5px] border-ink rounded-[14px_22px_16px_24px/20px_16px_22px_14px] font-scribble text-base transition ${
+                  !keepBackground
+                    ? "bg-phoenix-flame text-white shadow-[3px_3px_0_#1a1a1a]"
+                    : "bg-paper-cream hover:bg-paper-dark"
+                }`}
+                style={{ filter: "url(#sketch-roughen)" }}
+              >
+                🎬 Change the scene
+              </button>
             </div>
-            <SketchInput
-              label="or describe your own scene"
-              placeholder="e.g. rooftop party at night with city lights behind"
-              value={customScene}
-              onChange={(e) => setCustomScene(e.target.value)}
-            />
+
+            {keepBackground ? (
+              <p className="font-note text-sm text-ink-soft italic">
+                ✨ Phoenix will recreate your <b>exact pose and background</b>, just swap the outfit.
+                This is the most realistic try-on — jaise tum hi ho waha, bas kapde change.
+              </p>
+            ) : (
+              <>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {SCENE_PRESETS.map((p) => (
+                    <button
+                      key={p.label}
+                      onClick={() => {
+                        setScene(p.value);
+                        setCustomScene("");
+                      }}
+                      className={`px-4 py-2 border-[2px] border-ink rounded-full font-hand transition ${
+                        scene === p.value && !customScene
+                          ? "bg-phoenix-flame text-white shadow-[3px_3px_0_#1a1a1a]"
+                          : "bg-paper-cream hover:bg-paper-dark"
+                      }`}
+                      style={{ filter: "url(#sketch-roughen)" }}
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+                <SketchInput
+                  label="or describe your own scene"
+                  placeholder="e.g. rooftop party at night with city lights behind"
+                  value={customScene}
+                  onChange={(e) => setCustomScene(e.target.value)}
+                />
+              </>
+            )}
           </SketchCard>
 
           {/* Generate button */}
