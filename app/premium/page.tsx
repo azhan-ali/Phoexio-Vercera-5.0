@@ -14,12 +14,10 @@ import {
   Check,
   X,
   Crown,
-  Lock,
   ArrowRight,
   Zap,
   Heart,
 } from "lucide-react";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const features: { name: string; free: boolean | string; premium: boolean | string; category: string }[] = [

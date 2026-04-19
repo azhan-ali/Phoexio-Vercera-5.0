@@ -19,7 +19,6 @@ import {
   Droplet,
   ShoppingBasket,
   AlertTriangle,
-  Utensils,
 } from "lucide-react";
 import type { MealPlannerResult } from "@/lib/prompts/food";
 

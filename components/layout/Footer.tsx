@@ -1,4 +1,3 @@
-import Link from "next/link";
 import PhoenixLogo from "@/components/brand/PhoenixLogo";
 import { Mail, Sparkles, Heart } from "lucide-react";
 
@@ -25,21 +24,22 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <div>
-          <div className="font-scribble font-bold text-xl mb-2">Suites</div>
-          <ul className="space-y-1 font-hand text-ink-soft">
-            <li><Link href="/fashion" className="hover:text-phoenix-flame">Fashion & Style</Link></li>
-            <li><Link href="/food" className="hover:text-phoenix-flame">Food & Nutrition</Link></li>
-            <li><Link href="/mental-health" className="hover:text-phoenix-flame">Mental Health</Link></li>
-          </ul>
-        </div>
-        <div>
-          <div className="font-scribble font-bold text-xl mb-2">Info</div>
-          <ul className="space-y-1 font-hand text-ink-soft">
-            <li><Link href="/#how" className="hover:text-phoenix-flame">How it works</Link></li>
-            <li><Link href="/#love" className="hover:text-phoenix-flame">Testimonials</Link></li>
-            <li><a href="https://x.ai" target="_blank" rel="noreferrer" className="hover:text-phoenix-flame">Powered by Grok</a></li>
-          </ul>
+        <div className="md:col-span-2">
+          <div className="font-scribble font-bold text-xl mb-4">Meet the Creators</div>
+          <div className="grid grid-cols-2 gap-2">
+             <div className="bg-paper-dark border-[1.5px] border-ink p-2 rounded-lg font-hand text-sm shadow-[2px_2px_0px_#1a1a1a] translate-y-1">
+                <span className="text-phoenix-flame mr-1">✦</span> Azhan Ali
+             </div>
+             <div className="bg-paper-dark border-[1.5px] border-ink p-2 rounded-lg font-hand text-sm shadow-[2px_2px_0px_#1a1a1a] -rotate-1">
+                <span className="text-sketch-blue mr-1">✦</span> Aarif Khan
+             </div>
+             <div className="bg-paper-dark border-[1.5px] border-ink p-2 rounded-lg font-hand text-sm shadow-[2px_2px_0px_#1a1a1a] rotate-1">
+                <span className="text-sketch-pink mr-1">✦</span> Nabiha Irfan
+             </div>
+             <div className="bg-paper-dark border-[1.5px] border-ink p-2 rounded-lg font-hand text-sm shadow-[2px_2px_0px_#1a1a1a] -translate-y-1">
+                <span className="text-sketch-green mr-1">✦</span> Ameer Hamza
+             </div>
+          </div>
         </div>
       </div>
       <div className="text-center font-note text-sm text-ink-faded">

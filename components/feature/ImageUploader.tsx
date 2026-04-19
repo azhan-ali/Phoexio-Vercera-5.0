@@ -1,5 +1,5 @@
 "use client";
-import { Image as ImageIcon, X, Upload } from "lucide-react";
+import { X, Upload } from "lucide-react";
 import { useId, useState } from "react";
 import { fileToDataUrl } from "@/lib/api";
 

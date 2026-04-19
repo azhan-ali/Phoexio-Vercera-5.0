@@ -8,7 +8,6 @@ import ErrorBox from "@/components/feature/ErrorBox";
 import SketchCard from "@/components/sketch/SketchCard";
 import SketchButton from "@/components/sketch/SketchButton";
 import SketchHeading from "@/components/sketch/SketchHeading";
-import { DoodleStar } from "@/components/sketch/Doodles";
 import { TrendingUp, Globe, Sparkles, IndianRupee, Flame } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { TrendRadarResult } from "@/lib/prompts/fashion";

@@ -1,13 +1,10 @@
 import {
   DoodleStar,
-  DoodleHeart,
   DoodleSquiggle,
   DoodleFlower,
-  DoodleLightning,
   DoodleCloud,
   DoodleSpiral,
   DoodleCircle,
-  DoodleArrow,
 } from "@/components/sketch/Doodles";
 
 /**

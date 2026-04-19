@@ -12,7 +12,7 @@ import {
   DoodleCloud,
   DoodleCircle,
 } from "@/components/sketch/Doodles";
-import { ArrowRight, Sparkles, PlayCircle } from "lucide-react";
+import { ArrowRight, PlayCircle } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 

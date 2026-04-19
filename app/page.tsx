@@ -10,13 +10,14 @@ import ScrollProgress from "@/components/landing/ScrollProgress";
 import WavyDivider from "@/components/landing/WavyDivider";
 import {
   DoodleStar,
+  DoodleLightning,
+  DoodleHeart,
 } from "@/components/sketch/Doodles";
 import Link from "next/link";
 import {
   Shirt,
   Utensils,
   HeartPulse,
-  Sparkles,
   ArrowRight,
   TrendingUp,
   Crown,
@@ -173,15 +174,27 @@ export default function Home() {
         <WavyDivider color="#ff4500" />
 
         {/* ============ THREE SUITES ============ */}
-        <section id="suites" className="py-10">
+        <section id="suites" className="py-20 relative">
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+             <div className="absolute top-[10%] left-[5%] animate-drift-1 opacity-20">
+                <DoodleStar size={120} color="#ff4500" />
+             </div>
+             <div className="absolute bottom-[10%] right-[5%] animate-drift-2 opacity-20">
+                <DoodleStar size={100} color="#fcbf49" />
+             </div>
+          </div>
+
           <Reveal>
-            <div className="text-center mb-8">
-              <div className="font-hand text-phoenix-flame text-lg mb-1">// three suites</div>
-              <SketchHeading as="h2" underline className="!text-4xl md:!text-5xl">
+            <div className="text-center mb-16 relative">
+              <div className="font-scribble text-phoenix-flame text-2xl mb-2 animate-bounce inline-block">
+                Choose Your Vibe ✨
+              </div>
+              <SketchHeading as="h2" underline className="!text-5xl md:!text-7xl mb-6">
                 Pick Your Path
               </SketchHeading>
-              <p className="font-hand text-lg text-ink-faded mt-3 max-w-xl mx-auto">
-                Each suite is a mini AI studio. Use one. Use all three. Phoenix remembers your vibe.
+              <p className="font-hand text-xl text-ink-soft max-w-2xl mx-auto leading-relaxed">
+                Each suite is a mini AI studio. Designed to evolve with you. 
+                <span className="block mt-2 text-ink-faded italic text-base">One app. Three worlds. Infinite possibilities.</span>
               </p>
             </div>
           </Reveal>

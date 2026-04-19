@@ -6,7 +6,7 @@ import SectionHero from "@/components/layout/SectionHero";
 import SketchCard from "@/components/sketch/SketchCard";
 import SketchButton from "@/components/sketch/SketchButton";
 import SketchHeading from "@/components/sketch/SketchHeading";
-import { SketchInput, SketchTextarea } from "@/components/sketch/SketchInput";
+import { SketchTextarea } from "@/components/sketch/SketchInput";
 import { cn } from "@/lib/utils";
 import { apiChat, apiVision, apiSearch, fileToDataUrl } from "@/lib/api";
 import {
