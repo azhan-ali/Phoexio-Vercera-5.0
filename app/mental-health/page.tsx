@@ -3,14 +3,11 @@ import Footer from "@/components/layout/Footer";
 import SectionHero from "@/components/layout/SectionHero";
 import FeatureTile from "@/components/layout/FeatureTile";
 import SketchHeading from "@/components/sketch/SketchHeading";
-import SketchCard from "@/components/sketch/SketchCard";
 import {
   HeartPulse,
   MessageCircleHeart,
   BookHeart,
   Users,
-  LifeBuoy,
-  Languages,
 } from "lucide-react";
 
 const features = [
@@ -38,17 +35,6 @@ const features = [
     tilt: "right" as const,
   },
   {
-    href: "/mental-health/crisis",
-    title: "Crisis Support",
-    tagline: "help is close",
-    description:
-      "Agar kabhi heavy feel ho — real Indian helplines (iCall, Vandrevala Foundation) instantly accessible. AI detect bhi karega warning signs.",
-    Icon: LifeBuoy,
-    bullets: ["Real helpline numbers", "Auto crisis detection", "Location-aware"],
-    bg: "bg-sketch-red/20",
-    tilt: "left" as const,
-  },
-  {
     href: "/mental-health/circles",
     title: "Peer Support Circles",
     tagline: "you're not alone",
@@ -57,17 +43,6 @@ const features = [
     Icon: Users,
     bullets: ["Topic-based groups", "Moderated", "Anonymous handles"],
     bg: "bg-sketch-green/20",
-    tilt: "right" as const,
-  },
-  {
-    href: "/mental-health/language",
-    title: "Hindi + Regional Support",
-    tagline: "apni bhasha mein",
-    description:
-      "Hindi, Marathi, Tamil, Bengali — apni comfort language mein baat karo. Emotional nuance fully preserve.",
-    Icon: Languages,
-    bullets: ["7+ Indian languages", "Code-switch friendly", "Culturally aware"],
-    bg: "bg-phoenix-gold/20",
     tilt: "left" as const,
   },
 ];
@@ -89,7 +64,7 @@ export default function MentalHealthPage() {
 
       <section className="pb-10">
         <div className="text-center mb-6">
-          <div className="font-hand text-phoenix-flame text-lg">// 5 features</div>
+          <div className="font-hand text-phoenix-flame text-lg">// 3 features</div>
           <SketchHeading as="h2" underline className="!text-3xl md:!text-4xl">
             Safe space, always
           </SketchHeading>
