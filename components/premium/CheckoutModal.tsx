@@ -12,11 +12,21 @@ interface Props {
   open: boolean;
   onClose: () => void;
   plan: "monthly" | "yearly";
+  /** Display name of what's being bought (Premium / Combo / Solo pack). */
+  itemName?: string;
+  /** Optional price override (INR). If omitted, falls back to Premium monthly/yearly. */
+  priceOverride?: number;
 }
 
 type Step = "form" | "processing" | "success";
 
-export default function CheckoutModal({ open, onClose, plan }: Props) {
+export default function CheckoutModal({
+  open,
+  onClose,
+  plan,
+  itemName = "Phoenix Premium",
+  priceOverride,
+}: Props) {
   const [step, setStep] = useState<Step>("form");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,8 +36,14 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
 
   if (!open) return null;
 
-  const price = plan === "yearly" ? "₹2,399" : "₹299";
-  const period = plan === "yearly" ? "/year" : "/month";
+  const isPremiumItem = itemName === "Phoenix Premium";
+  const price =
+    priceOverride !== undefined
+      ? `₹${priceOverride.toLocaleString("en-IN")}`
+      : plan === "yearly"
+      ? "₹3,588"
+      : "₹499";
+  const period = isPremiumItem ? (plan === "yearly" ? "/year" : "/month") : "";
 
   async function submit() {
     if (!name || !email) return;
@@ -72,7 +88,7 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
                   <Lock size={12} /> secure checkout · hackathon demo
                 </div>
                 <SketchHeading as="h3" className="!text-3xl">
-                  Unlock <span className="sketch-highlight">Phoenix Premium</span>
+                  Unlock <span className="sketch-highlight">{itemName}</span>
                 </SketchHeading>
                 <div className="font-scribble text-4xl font-bold text-phoenix-flame mt-2">
                   {price}
@@ -172,8 +188,9 @@ export default function CheckoutModal({ open, onClose, plan }: Props) {
                 You're <span className="sketch-highlight">Premium!</span>
               </SketchHeading>
               <p className="font-hand text-lg text-ink-soft max-w-sm mx-auto mb-5">
-                Occasion Package + Mood-Based Styling are now unlocked. Welcome to Phoenix
-                Premium 🔥
+                {isPremiumItem
+                  ? "Everything unlocked. Unlimited access. Welcome to Phoenix Premium 🔥"
+                  : `${itemName} activated. Head back to your features and use them freely 🔥`}
               </p>
               <SketchButton variant="flame" size="lg" onClick={close}>
                 Start exploring

@@ -45,16 +45,43 @@ export default function PremiumGate({ featureName, children }: Props) {
       <SketchHeading as="h2" className="!text-3xl md:!text-4xl mb-3">
         Unlock <span className="sketch-highlight">{featureName}</span>
       </SketchHeading>
-      <p className="font-hand text-lg text-ink-soft max-w-md mx-auto mb-5">
-        Premium users get exclusive access to Virtual Try-On & Mood-Based styling, powered by Phoenix AI reasoning.
+      <p className="font-hand text-lg text-ink-soft max-w-lg mx-auto mb-5">
+        Free tier quota khatam ho gaya? No stress. Pick the option that fits you:
       </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-3xl mx-auto mb-6 text-left">
+        <div className="p-4 bg-paper-cream border-[2.5px] border-ink rounded-xl">
+          <div className="font-scribble text-lg font-bold mb-1">📦 Solo Pack</div>
+          <div className="font-scribble text-2xl text-phoenix-flame mb-1">₹49+</div>
+          <p className="font-note text-xs text-ink-soft">
+            credits for just this feature · never expire
+          </p>
+        </div>
+        <div className="p-4 bg-phoenix-flame/10 border-[2.5px] border-ink rounded-xl relative">
+          <span className="absolute -top-2 -right-2 px-2 py-0.5 bg-phoenix-flame text-white border-[2px] border-ink rounded-full font-hand text-[10px] rotate-6">
+            best value
+          </span>
+          <div className="font-scribble text-lg font-bold mb-1">🔥 Combo Pack</div>
+          <div className="font-scribble text-2xl text-phoenix-flame mb-1">₹99+</div>
+          <p className="font-note text-xs text-ink-soft">
+            30 days unlimited on a whole suite
+          </p>
+        </div>
+        <div className="p-4 bg-phoenix-gold/20 border-[2.5px] border-ink rounded-xl">
+          <div className="font-scribble text-lg font-bold mb-1">👑 Premium</div>
+          <div className="font-scribble text-2xl text-phoenix-flame mb-1">₹299/mo</div>
+          <p className="font-note text-xs text-ink-soft">
+            everything unlimited · priority AI
+          </p>
+        </div>
+      </div>
 
       <ul className="inline-block text-left space-y-1.5 mb-6 font-note text-ink-soft">
         {[
-          "Virtual Try-On",
-          "Mood-Based Styling",
-          "Priority AI models",
-          "Unlimited queries",
+          "All prices in ₹ (INR)",
+          "Solo pack credits never expire",
+          "Cancel Premium anytime",
+          "Secure UPI / card / netbanking",
         ].map((b) => (
           <li key={b} className="flex gap-2 items-center">
             <Check size={16} className="text-sketch-green" /> {b}
@@ -65,7 +92,7 @@ export default function PremiumGate({ featureName, children }: Props) {
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Link href="/premium">
           <SketchButton variant="gold" size="lg">
-            <Sparkles size={18} /> See Premium plans
+            <Sparkles size={18} /> See all plans
           </SketchButton>
         </Link>
         <SketchButton variant="ghost" size="lg" onClick={() => setPremium(true)}>
