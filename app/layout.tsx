@@ -3,6 +3,7 @@ import { Kalam, Caveat, Patrick_Hand } from "next/font/google";
 import "./globals.css";
 import SketchSVGDefs from "@/components/sketch/SketchSVGDefs";
 import AnimatedBackground from "@/components/landing/AnimatedBackground";
+import CustomCursor from "@/components/sketch/CustomCursor";
 
 const kalam = Kalam({
   subsets: ["latin"],
@@ -75,6 +76,7 @@ export default function RootLayout({
       <body
         className={`${kalam.variable} ${caveat.variable} ${patrick.variable} paper-bg antialiased min-h-screen`}
       >
+        <CustomCursor />
         <SketchSVGDefs />
         <AnimatedBackground />
         <div className="relative z-10">{children}</div>

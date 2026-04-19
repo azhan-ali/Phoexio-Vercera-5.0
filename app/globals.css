@@ -11,6 +11,7 @@ html, body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-patrick), "Patrick Hand", cursive;
+  cursor: none; /* Hide default cursor to use custom one */
 }
 
 /* ===================== PAPER TEXTURE ===================== */
@@ -184,6 +185,76 @@ html, body {
 .animate-spin-slow { animation: spin-slow 20s linear infinite; }
 .animate-pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
 .animate-marquee { animation: marquee 40s linear infinite; }
+
+/* ===================== CUSTOM CURSOR ===================== */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1a1a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 19l7-7 3 3-7 7-3-3z'/><path d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'/><path d='M2 2l5 5'/><path d='M11 11l1 1'/></svg>");
+  background-size: contain;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 2px dashed rgba(26, 26, 26, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease-out, border 0.3s ease;
+  filter: url(#sketch-roughen);
+}
+
+.cursor-active .cursor-follower {
+  transform: translate(-50%, -50%) scale(1.5);
+  border: 2px solid #ff4500;
+  background: rgba(255, 69, 0, 0.05);
+}
+
+/* ===================== PREMIUM NAVBAR ===================== */
+.nav-tape {
+  position: relative;
+}
+.nav-tape::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+  width: 40px;
+  height: 14px;
+  background: rgba(252, 211, 77, 0.4);
+  border: 1px dashed rgba(0,0,0,0.1);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.nav-tape:hover::before {
+  opacity: 1;
+}
+
+.nav-scribble-bottom {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='10' preserveAspectRatio='none'><path d='M0 5 Q 25 1, 50 8 T 100 5 T 150 2 T 200 5' stroke='%231a1a1a' stroke-width='2' fill='none' opacity='0.2'/></svg>");
+  background-repeat: repeat-x;
+  background-size: 200px 10px;
+  opacity: 0.8;
+}
 
 /* scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
