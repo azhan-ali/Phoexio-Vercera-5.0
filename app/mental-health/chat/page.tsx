@@ -1,18 +1,26 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FeaturePageHeader from "@/components/feature/FeaturePageHeader";
 import SketchCard from "@/components/sketch/SketchCard";
 import SketchButton from "@/components/sketch/SketchButton";
-import { SUPPORTED_LANGUAGES, type LanguageCode } from "@/lib/prompts/mental";
 import {
-  MessageCircleHeart,
+  SUPPORTED_LANGUAGES,
+  PERSONAS,
+  TONES,
+  type LanguageCode,
+  type PersonaId,
+  type ToneId,
+} from "@/lib/prompts/mental";
+import {
+  Bot,
   Send,
   Loader2,
   Phone,
   Trash2,
   Languages,
+  Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -28,41 +36,47 @@ interface Helpline {
   hours: string;
 }
 
-const GREETINGS: Record<LanguageCode, string> = {
-  en: "Hey, I'm Phoenix. I'm here to just listen — no pressure, no fixing. How are you really feeling today?",
-  hi: "नमस्ते, मैं फीनिक्स हूँ। मैं सिर्फ सुनने के लिए हूँ — कोई दबाव नहीं, कोई सुधार नहीं। आज सच में कैसा महसूस हो रहा है?",
-  hinglish:
-    "Hey, main Phoenix. Main bas sun-ne ke liye hun — koi judgement nahi, koi advice ka pressure nahi. Aaj sach mein kaisa feel ho raha hai?",
-  mr: "नमस्कार, मी फीनिक्स आहे. मी फक्त ऐकण्यासाठी आहे. आज खरंच कसं वाटतंय?",
-  ta: "வணக்கம், நான் பீனிக்ஸ். நான் கேட்க மட்டுமே இங்கே இருக்கிறேன். இன்று உங்களுக்கு உண்மையில் எப்படி இருக்கிறது?",
-  te: "నమస్తే, నేను ఫీనిక్స్. నేను వినడానికి మాత్రమే ఇక్కడ ఉన్నాను. ఈరోజు నిజంగా ఎలా అనిపిస్తోంది?",
-  bn: "হ্যালো, আমি ফিনিক্স। আমি শুধু শোনার জন্য এখানে আছি। আজ সত্যিই কেমন লাগছে?",
-  gu: "હેલો, હું ફીનિક્સ છું. હું ફક્ત સાંભળવા માટે અહીં છું. આજે ખરેખર કેવું લાગે છે?",
-};
+/**
+ * Greeting built from the chosen persona + tone so the first line
+ * already feels like the right companion.
+ */
+function buildGreeting(persona: PersonaId, tone: ToneId, language: LanguageCode) {
+  const p = PERSONAS.find((x) => x.id === persona) ?? PERSONAS[0];
+  const t = TONES.find((x) => x.id === tone) ?? TONES[1];
 
-const QUICK_PROMPTS = [
-  "I'm feeling overwhelmed",
-  "Can't sleep lately",
-  "I had a really good day",
-  "Work stress is killing me",
-  "I feel lonely",
-  "Anxious about tomorrow",
-];
+  if (language === "en") {
+    return `Hey — I'm Phoenix, your ${p.label.toLowerCase()}. Tone set to ${t.label.toLowerCase()} ${t.emoji}. What's on your mind?`;
+  }
+  // Default Hinglish-friendly greeting
+  return `Hey yaar — main Phoenix, tumhara ${p.label.toLowerCase()} ${p.emoji}. Mood set to ${t.label.toLowerCase()} ${t.emoji}. Kya chal raha hai?`;
+}
 
 export default function ChatPage() {
   const [language, setLanguage] = useState<LanguageCode>("hinglish");
+  const [persona, setPersona] = useState<PersonaId>("friend");
+  const [toneIdx, setToneIdx] = useState(1); // index into TONES array (0-4)
+  const tone: ToneId = TONES[toneIdx].id;
+
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [helplines, setHelplines] = useState<Helpline[] | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // initial greeting
+  // Reset greeting whenever persona / tone / language changes and there's no user msg yet
   useEffect(() => {
-    setMessages([
-      { role: "assistant", content: GREETINGS[language], id: "greet" },
-    ]);
-  }, [language]);
+    setMessages((prev) => {
+      const hasUser = prev.some((m) => m.role === "user");
+      if (hasUser) return prev;
+      return [
+        {
+          role: "assistant",
+          content: buildGreeting(persona, tone, language),
+          id: "greet",
+        },
+      ];
+    });
+  }, [persona, tone, language]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({
@@ -70,6 +84,12 @@ export default function ChatPage() {
       behavior: "smooth",
     });
   }, [messages, loading]);
+
+  const activePersona = useMemo(
+    () => PERSONAS.find((p) => p.id === persona) ?? PERSONAS[0],
+    [persona]
+  );
+  const activeTone = TONES[toneIdx];
 
   async function send(textOverride?: string) {
     const text = (textOverride ?? input).trim();
@@ -87,17 +107,15 @@ export default function ChatPage() {
         body: JSON.stringify({
           messages: history.map(({ role, content }) => ({ role, content })),
           language,
+          persona,
+          tone,
         }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Chat failed");
       setMessages((m) => [
         ...m,
-        {
-          role: "assistant",
-          content: data.content,
-          id: `a-${Date.now()}`,
-        },
+        { role: "assistant", content: data.content, id: `a-${Date.now()}` },
       ]);
       if (data.crisis?.triggered) {
         setHelplines(data.crisis.helplines);
@@ -108,7 +126,7 @@ export default function ChatPage() {
         {
           role: "assistant",
           content:
-            "Mujhe thoda rukna pada — connection issue ho raha hai. Phir se try karo? (" +
+            "Ek second — connection thoda atka. Phir se try karo? (" +
             (e instanceof Error ? e.message : "error") +
             ")",
           id: `a-${Date.now()}`,
@@ -121,24 +139,103 @@ export default function ChatPage() {
 
   function clearChat() {
     if (!confirm("Clear this conversation? It won't be saved anywhere.")) return;
-    setMessages([{ role: "assistant", content: GREETINGS[language], id: "greet" }]);
+    setMessages([
+      {
+        role: "assistant",
+        content: buildGreeting(persona, tone, language),
+        id: "greet",
+      },
+    ]);
     setHelplines(null);
   }
 
   return (
-    <main className="px-4 md:px-8 max-w-4xl mx-auto">
+    <main className="px-4 md:px-8 max-w-5xl mx-auto">
       <Navbar />
       <FeaturePageHeader
         backHref="/mental-health"
         backLabel="back to mental health"
         eyebrow="Mental Health · Feature 1"
-        title="Anonymous"
-        highlight="AI Chat"
-        subtitle="24/7 judgement-free listener. Koi login nahi, naam nahi — bas baat karo. Conversation is never saved."
-        Icon={MessageCircleHeart}
+        title="Your AI"
+        highlight="Companion"
+        subtitle="Pick a persona, dial in the tone — chat with a bot that adapts to exactly the kind of conversation you need. Private. Never saved."
+        Icon={Bot}
       />
 
-      {/* Language + clear controls */}
+      {/* ============ PERSONA PICKER ============ */}
+      <div className="mb-4">
+        <div className="font-hand text-sm text-ink-faded mb-2 flex items-center gap-2">
+          <Sparkles size={14} /> choose your companion
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {PERSONAS.map((p) => {
+            const active = p.id === persona;
+            return (
+              <button
+                key={p.id}
+                onClick={() => setPersona(p.id)}
+                className={cn(
+                  "text-left p-3 border-[2.5px] border-ink rounded-xl transition-all",
+                  "hover:-translate-y-1 hover:shadow-[3px_3px_0_#1a1a1a]",
+                  active
+                    ? "bg-phoenix-flame/20 shadow-[3px_3px_0_#1a1a1a] -translate-y-1"
+                    : p.accent
+                )}
+                style={{ filter: "url(#sketch-roughen)" }}
+              >
+                <div className="text-2xl mb-1">{p.emoji}</div>
+                <div className="font-scribble font-bold text-base leading-tight">
+                  {p.label}
+                </div>
+                <div className="font-hand text-xs text-ink-soft italic">
+                  {p.tagline}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ============ TONE SLIDER ============ */}
+      <SketchCard variant="cream" className="!p-4 mb-4">
+        <div className="flex items-center justify-between mb-2">
+          <div className="font-hand text-sm text-ink-faded">
+            how should i sound?
+          </div>
+          <div className="font-scribble text-lg font-bold text-phoenix-flame">
+            {activeTone.emoji} {activeTone.label}
+          </div>
+        </div>
+
+        <input
+          type="range"
+          min={0}
+          max={TONES.length - 1}
+          step={1}
+          value={toneIdx}
+          onChange={(e) => setToneIdx(Number(e.target.value))}
+          className="w-full accent-phoenix-flame cursor-pointer"
+        />
+
+        <div className="flex justify-between mt-2 px-1">
+          {TONES.map((t, i) => (
+            <button
+              key={t.id}
+              onClick={() => setToneIdx(i)}
+              className={cn(
+                "flex flex-col items-center gap-0.5 transition-opacity cursor-pointer",
+                i === toneIdx ? "opacity-100 scale-110" : "opacity-50 hover:opacity-80"
+              )}
+              type="button"
+            >
+              <span className="text-lg">{t.emoji}</span>
+              <span className="font-hand text-[11px] text-ink-soft">{t.label}</span>
+            </button>
+          ))}
+        </div>
+      </SketchCard>
+
+      {/* ============ LANGUAGE + CLEAR ============ */}
       <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
         <div className="flex items-center gap-2">
           <Languages size={18} className="text-ink-faded" />
@@ -164,7 +261,7 @@ export default function ChatPage() {
         </button>
       </div>
 
-      {/* Crisis helpline banner */}
+      {/* ============ CRISIS BANNER ============ */}
       {helplines && (
         <SketchCard
           variant="paper"
@@ -195,38 +292,34 @@ export default function ChatPage() {
         </SketchCard>
       )}
 
-      {/* Chat window */}
+      {/* ============ CHAT WINDOW ============ */}
       <SketchCard variant="paper" className="!p-0 mb-4 overflow-hidden">
+        <div className="px-4 py-2 border-b-2 border-dashed border-ink/30 flex items-center gap-2 bg-paper-cream/60">
+          <span className="text-xl">{activePersona.emoji}</span>
+          <div className="flex-1">
+            <div className="font-scribble font-bold leading-none">
+              {activePersona.label}
+            </div>
+            <div className="font-hand text-xs text-ink-faded">
+              {activeTone.emoji} {activeTone.label} tone · {activePersona.tagline}
+            </div>
+          </div>
+        </div>
+
         <div
           ref={scrollRef}
-          className="h-[480px] overflow-y-auto p-4 space-y-3 bg-paper-cream paper-lined"
+          className="h-[460px] overflow-y-auto p-4 space-y-3 bg-paper-cream paper-lined"
         >
           {messages.map((m) => (
-            <Bubble key={m.id} msg={m} />
+            <Bubble key={m.id} msg={m} emoji={activePersona.emoji} />
           ))}
           {loading && (
             <div className="flex items-center gap-2 font-hand text-ink-faded pl-2">
               <Loader2 size={16} className="animate-spin" />
-              Phoenix is listening…
+              {activePersona.label} is typing…
             </div>
           )}
         </div>
-
-        {/* Quick prompts (only on empty chat) */}
-        {messages.filter((m) => m.role === "user").length === 0 && (
-          <div className="p-3 border-t-2 border-dashed border-ink/30 flex flex-wrap gap-2">
-            {QUICK_PROMPTS.map((q) => (
-              <button
-                key={q}
-                onClick={() => send(q)}
-                className="px-3 py-1 bg-paper-cream border-[2px] border-ink rounded-full font-hand text-xs hover:bg-phoenix-flame hover:text-white transition"
-                style={{ filter: "url(#sketch-roughen)" }}
-              >
-                {q}
-              </button>
-            ))}
-          </div>
-        )}
 
         {/* Input */}
         <div className="p-3 border-t-2 border-dashed border-ink/30 flex gap-2 items-end">
@@ -239,7 +332,7 @@ export default function ChatPage() {
                 send();
               }
             }}
-            placeholder="share what's on your mind… (Enter to send, Shift+Enter newline)"
+            placeholder={`type to your ${activePersona.label.toLowerCase()}… (Enter to send)`}
             rows={2}
             className="flex-1 px-3 py-2 bg-paper-cream text-ink font-note text-base border-[2.5px] border-ink rounded-[12px_18px_14px_20px/16px_12px_18px_12px] outline-none resize-none placeholder:italic placeholder:text-ink-faded"
             style={{ filter: "url(#sketch-roughen)" }}
@@ -255,7 +348,8 @@ export default function ChatPage() {
       </SketchCard>
 
       <p className="text-center font-note text-xs text-ink-faded italic mb-8">
-        🔒 your chat is never saved. not logged. not trained on. not a therapist — but a kind ear.
+        🔒 your chat is never saved. not logged. not trained on. switch persona
+        or tone anytime — new vibe, same private space.
       </p>
 
       <Footer />
@@ -263,10 +357,15 @@ export default function ChatPage() {
   );
 }
 
-function Bubble({ msg }: { msg: Msg }) {
+function Bubble({ msg, emoji }: { msg: Msg; emoji: string }) {
   const isUser = msg.role === "user";
   return (
     <div className={cn("flex", isUser ? "justify-end" : "justify-start")}>
+      {!isUser && (
+        <div className="w-8 h-8 shrink-0 mr-2 rounded-full bg-paper border-[2px] border-ink flex items-center justify-center text-base">
+          {emoji}
+        </div>
+      )}
       <div
         className={cn(
           "max-w-[80%] px-4 py-2 border-[2.5px] border-ink",

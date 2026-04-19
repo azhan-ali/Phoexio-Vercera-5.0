@@ -5,7 +5,7 @@ import FeatureTile from "@/components/layout/FeatureTile";
 import SketchHeading from "@/components/sketch/SketchHeading";
 import {
   HeartPulse,
-  MessageCircleHeart,
+  Bot,
   BookHeart,
   Users,
 } from "lucide-react";
@@ -13,12 +13,12 @@ import {
 const features = [
   {
     href: "/mental-health/chat",
-    title: "Anonymous AI Chat",
-    tagline: "24/7, judgement-free",
+    title: "AI Companion Chat",
+    tagline: "your bot, your vibe",
     description:
-      "Jab bhi mann bhaari lage — baat karo. Naam, login, kuch nahi chahiye. AI sune ga, samjhe ga, aur safe space de ga.",
-    Icon: MessageCircleHeart,
-    bullets: ["Fully anonymous", "Round the clock", "Empathetic AI-powered"],
+      "Pick a persona — Virtual Friend, Teacher, Guide or Coach — then dial in the tone (loving, chill, serious, funny, tough love). Same private space, four personalities, five vibes.",
+    Icon: Bot,
+    bullets: ["4 personas to choose from", "5-level tone slider", "Fully anonymous · never saved"],
     bg: "bg-sketch-purple/25",
     tilt: "left" as const,
     tape: true,

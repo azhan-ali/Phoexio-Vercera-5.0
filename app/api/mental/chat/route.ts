@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { grokChat, type ChatMessage } from "@/lib/grok";
-import { chatSystemPrompt, type LanguageCode } from "@/lib/prompts/mental";
+import {
+  chatSystemPrompt,
+  type LanguageCode,
+  type PersonaId,
+  type ToneId,
+} from "@/lib/prompts/mental";
 import { detectCrisis, HELPLINES } from "@/lib/crisis";
 
 export const runtime = "nodejs";
@@ -8,9 +13,11 @@ export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
   try {
-    const { messages, language } = (await req.json()) as {
+    const { messages, language, persona, tone } = (await req.json()) as {
       messages?: { role: "user" | "assistant"; content: string }[];
       language?: LanguageCode;
+      persona?: PersonaId;
+      tone?: ToneId;
     };
     if (!messages || messages.length === 0) {
       return NextResponse.json({ error: "messages required" }, { status: 400 });
@@ -20,7 +27,11 @@ export async function POST(req: NextRequest) {
     const lastUser = [...messages].reverse().find((m) => m.role === "user");
     const crisis = detectCrisis(lastUser?.content || "");
 
-    const systemPrompt = chatSystemPrompt(language || "hinglish");
+    const systemPrompt = chatSystemPrompt(
+      language || "hinglish",
+      persona || "friend",
+      tone || "chill"
+    );
     const finalMessages: ChatMessage[] = [
       { role: "system", content: systemPrompt },
       ...(crisis.triggered
