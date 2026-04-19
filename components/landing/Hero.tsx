@@ -113,14 +113,6 @@ export default function Hero() {
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[520px]">
         {/* LEFT — Copy */}
         <div className="text-center md:text-left relative">
-          <Reveal>
-            <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 mb-5 bg-phoenix-gold/50 border-[2px] border-ink rounded-full font-hand text-sm"
-              style={{ filter: "url(#sketch-roughen)" }}
-            >
-              <Sparkles size={14} /> powered by Grok · made for India
-            </div>
-          </Reveal>
 
           <Reveal delay={0.1}>
             <h1 className="font-scribble font-bold leading-[0.95] text-[4rem] md:text-[6.5rem] ink-text mb-1">
@@ -185,22 +177,6 @@ export default function Hero() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.5}>
-            <div className="flex items-center gap-3 justify-center md:justify-start font-hand text-sm text-ink-faded">
-              <div className="flex -space-x-2">
-                {["🧑🏽", "👩🏾", "🧔🏽‍♂️", "👩🏻"].map((e, i) => (
-                  <div
-                    key={i}
-                    className="w-8 h-8 bg-paper-cream border-[2px] border-ink rounded-full flex items-center justify-center text-base"
-                    style={{ filter: "url(#sketch-roughen)" }}
-                  >
-                    {e}
-                  </div>
-                ))}
-              </div>
-              <span>loved by 12k+ desis</span>
-            </div>
-          </Reveal>
         </div>
 
         {/* RIGHT — GIANT phoenix with flame aura */}

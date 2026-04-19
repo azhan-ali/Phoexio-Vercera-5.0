@@ -189,30 +189,13 @@ export default function Home() {
 
         <Hero />
 
-        {/* ============ STATS ROW (counter-animated) ============ */}
-        <section className="py-6">
-          <SketchCard variant="paper" className="!p-6 bg-ink/5">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {heroStats.map((s, i) => (
-                <Reveal key={s.label} delay={i * 0.1}>
-                  <div className="text-center">
-                    <div className="font-scribble text-5xl md:text-6xl font-bold text-phoenix-flame leading-none">
-                      <AnimatedCounter value={s.n} suffix={s.suffix} />
-                    </div>
-                    <div className="font-hand text-sm text-ink-faded mt-2">{s.label}</div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </SketchCard>
-        </section>
 
         {/* ============ MARQUEE STRIP ============ */}
-        <section className="relative my-2 py-3 bg-ink text-paper-cream overflow-hidden border-y-[3px] border-ink -mx-4 md:-mx-8">
-          <div className="flex gap-10 animate-marquee whitespace-nowrap font-hand text-xl">
+        <section className="relative my-2 py-4 bg-paper-dark/50 text-ink overflow-hidden border-y-[2.5px] border-dashed border-ink/40 -mx-4 md:-mx-8">
+          <div className="flex gap-10 animate-marquee whitespace-nowrap font-note text-xl uppercase tracking-wider">
             {[...marqueeItems, ...marqueeItems].map((item, i) => (
               <span key={i} className="flex items-center gap-3 shrink-0">
-                <DoodleStar size={18} color="#ffba08" />
+                <DoodleStar size={18} color="#ff4500" />
                 {item}
               </span>
             ))}
