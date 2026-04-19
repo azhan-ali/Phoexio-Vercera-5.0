@@ -85,9 +85,11 @@ export default function JournalPage() {
       gratitude: gratitude.trim() || undefined,
       trigger: trigger.trim() || undefined,
     };
-    const next = [e, ...entries];
-    setEntries(next);
-    saveEntries(next);
+    setEntries((prev) => {
+      const next = [e, ...prev];
+      saveEntries(next);
+      return next;
+    });
     setNote("");
     setGratitude("");
     setTrigger("");
@@ -95,9 +97,11 @@ export default function JournalPage() {
   }
 
   function deleteEntry(id: string) {
-    const next = entries.filter((e) => e.id !== id);
-    setEntries(next);
-    saveEntries(next);
+    setEntries((prev) => {
+      const next = prev.filter((e) => e.id !== id);
+      saveEntries(next);
+      return next;
+    });
     setInsights(null);
   }
 
@@ -117,9 +121,11 @@ export default function JournalPage() {
         gratitude: ["coffee", "sleep", "friend", "-", "peace", "family", "warmth"][i % 7],
       };
     });
-    const next = [...sample, ...entries];
-    setEntries(next);
-    saveEntries(next);
+    setEntries((prev) => {
+      const next = [...sample, ...prev];
+      saveEntries(next);
+      return next;
+    });
   }
 
   async function analyze() {
