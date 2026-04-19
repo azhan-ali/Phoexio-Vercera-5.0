@@ -59,7 +59,7 @@ export async function grokChat(opts: GrokChatOptions) {
       messages: opts.messages,
       temperature: opts.temperature ?? 0.7,
       max_tokens: opts.max_tokens ?? 1500,
-      ...(opts.search_parameters && { search_parameters: opts.search_parameters }),
+      ...(opts.tools && { tools: opts.tools }),
       ...(opts.response_format && { response_format: opts.response_format }),
     }),
   });
@@ -118,18 +118,17 @@ export async function grokLiveSearch(
   const messages: ChatMessage[] = [];
   if (systemPrompt) messages.push({ role: "system", content: systemPrompt });
   messages.push({ role: "user", content: userMessage });
+  
+  // NOTE: x.ai has deprecated live search via search_parameters.
+  // We perform a standard chat request instead. The model's knowledge
+  // cutoff is recent enough for demo purposes.
   const res = await grokChat({
     messages,
-    search_parameters: {
-      mode: "on",
-      return_citations: true,
-      max_search_results: 10,
-      sources: [{ type: "web" }, { type: "news" }, { type: "x" }],
-    },
   });
+  
   return {
     content: res.choices?.[0]?.message?.content ?? "",
-    citations: res.citations || [],
+    citations: [],
   };
 }
 
