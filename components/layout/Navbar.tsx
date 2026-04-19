@@ -37,7 +37,7 @@ export default function Navbar() {
     <>
       <nav className="flex items-center justify-between py-4 sticky top-0 z-40 bg-paper/70 backdrop-blur-sm">
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          <PhoenixLogo size={52} animated showText />
+          <PhoenixLogo size={64} animated showText />
         </Link>
 
         {/* Desktop links */}
@@ -91,7 +91,7 @@ export default function Navbar() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-6">
-              <PhoenixLogo size={40} animated showText />
+              <PhoenixLogo size={52} animated showText />
               <button
                 onClick={() => setOpen(false)}
                 className="p-2 bg-paper border-[2px] border-ink rounded-xl hover:bg-sketch-red hover:text-white transition"
