@@ -164,16 +164,20 @@ export default function Hero() {
 
           <Reveal delay={0.4}>
             <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start mb-4">
-              <Link href="/fashion">
+              <Link href="#suites">
                 <SketchButton variant="flame" size="lg">
                   Start free <ArrowRight size={20} />
                 </SketchButton>
               </Link>
-              <Link href="#how">
+              <a
+                href="https://drive.google.com/drive/folders/1TV0_MPHr8BIKvDQZbVMYJkPX6F-Si2Ur"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <SketchButton variant="ghost" size="lg">
                   <PlayCircle size={18} /> See how it works
                 </SketchButton>
-              </Link>
+              </a>
             </div>
           </Reveal>
 
