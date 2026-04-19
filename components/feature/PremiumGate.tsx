@@ -46,13 +46,12 @@ export default function PremiumGate({ featureName, children }: Props) {
         Unlock <span className="sketch-highlight">{featureName}</span>
       </SketchHeading>
       <p className="font-hand text-lg text-ink-soft max-w-md mx-auto mb-5">
-        Premium users get holistic AI reasoning across outfit, venue, food & music — poori shaam
-        plan in one click.
+        Premium users get exclusive access to Virtual Try-On & Mood-Based styling, powered by Phoenix AI reasoning.
       </p>
 
       <ul className="inline-block text-left space-y-1.5 mb-6 font-note text-ink-soft">
         {[
-          "Occasion Complete Package",
+          "Virtual Try-On",
           "Mood-Based Styling",
           "Priority AI models",
           "Unlimited queries",

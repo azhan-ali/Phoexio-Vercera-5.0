@@ -46,7 +46,6 @@ const features = [
     bullets: ["Holistic AI reasoning", "Outfit + dining + music", "Multiple occasions"],
     bg: "bg-phoenix-gold/25",
     tilt: "left" as const,
-    premium: true,
   },
   {
     href: "/fashion/try-on",

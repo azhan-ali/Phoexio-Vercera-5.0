@@ -3,7 +3,6 @@ import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FeaturePageHeader from "@/components/feature/FeaturePageHeader";
-import PremiumGate from "@/components/feature/PremiumGate";
 import Loading from "@/components/feature/Loading";
 import ErrorBox from "@/components/feature/ErrorBox";
 import SketchCard from "@/components/sketch/SketchCard";
@@ -40,16 +39,14 @@ export default function OccasionPlannerPage() {
       <FeaturePageHeader
         backHref="/fashion"
         backLabel="back to fashion"
-        eyebrow="Fashion · Premium ✨"
+        eyebrow="Fashion · Occasion Planner"
         title="Occasion"
         highlight="Complete Package"
         subtitle="Tell Phoenix the occasion — get a full evening plan: outfit + venue vibe + 3 dishes + playlist mood, all reasoned together holistically."
         Icon={CalendarHeart}
       />
 
-      <PremiumGate featureName="Occasion Complete Package">
-        <OccasionPlannerInner />
-      </PremiumGate>
+      <OccasionPlannerInner />
 
       <div className="pb-10" />
       <Footer />

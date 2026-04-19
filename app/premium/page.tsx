@@ -23,7 +23,8 @@ import { cn } from "@/lib/utils";
 const features: { name: string; free: boolean | string; premium: boolean | string; category: string }[] = [
   { category: "Fashion", name: "Outfit Analyzer (vision)", free: true, premium: true },
   { category: "Fashion", name: "Live Fashion Trend Radar", free: true, premium: true },
-  { category: "Fashion", name: "Occasion Complete Package", free: false, premium: true },
+  { category: "Fashion", name: "Occasion Complete Package", free: true, premium: true },
+  { category: "Fashion", name: "Virtual Try-On", free: false, premium: true },
   { category: "Fashion", name: "Mood-Based Styling", free: false, premium: true },
   { category: "Food", name: "Fridge-to-Recipe AI", free: true, premium: true },
   { category: "Food", name: "Body-Type Meal Planner", free: true, premium: true },
@@ -141,7 +142,8 @@ export default function PremiumPage() {
             <BulletYes>Outfit analyzer + trends + fridge scanner</BulletYes>
             <BulletYes>Mental health chat + journal + crisis</BulletYes>
             <BulletYes>8 language support</BulletYes>
-            <BulletNo>Occasion Complete Package</BulletNo>
+            <BulletYes>Occasion Complete Package</BulletYes>
+            <BulletNo>Virtual Try-On</BulletNo>
             <BulletNo>Mood-Based Styling</BulletNo>
             <BulletNo>Unlimited queries · priority speed</BulletNo>
           </ul>
@@ -194,7 +196,7 @@ export default function PremiumPage() {
               <strong>Everything in Free</strong>
             </BulletYes>
             <BulletYes>
-              <strong>Occasion Complete Package</strong> (outfit + venue + food + music)
+              <strong>Virtual Try-On</strong> (magazine-quality)
             </BulletYes>
             <BulletYes>
               <strong>Mood-Based Styling</strong> with color psychology
