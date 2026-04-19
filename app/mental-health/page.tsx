@@ -11,7 +11,6 @@ import {
   Users,
   LifeBuoy,
   Languages,
-  Phone,
 } from "lucide-react";
 
 const features = [
@@ -87,23 +86,6 @@ export default function MentalHealthPage() {
         accentColor="bg-sketch-purple/40"
         doodleColors={["#9d4edd", "#4361ee", "#ff6b9d", "#52b788"]}
       />
-
-      {/* Crisis banner — always visible on this page */}
-      <SketchCard
-        variant="paper"
-        className="!p-4 mb-8 bg-sketch-red/15 flex flex-col md:flex-row items-start md:items-center gap-3 justify-between"
-      >
-        <div className="flex items-start gap-3">
-          <Phone size={28} className="text-sketch-red shrink-0 mt-1" strokeWidth={2.2} />
-          <div>
-            <div className="font-scribble font-bold text-xl">In crisis? You are not alone.</div>
-            <p className="font-note text-sm text-ink-soft">
-              iCall: <strong>9152987821</strong> · Vandrevala Foundation:{" "}
-              <strong>1860-2662-345</strong> · AASRA: <strong>9820466726</strong>
-            </p>
-          </div>
-        </div>
-      </SketchCard>
 
       <section className="pb-10">
         <div className="text-center mb-6">
