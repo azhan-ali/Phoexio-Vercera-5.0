@@ -63,7 +63,7 @@ export default function FridgeScannerPage() {
         eyebrow="Food · Feature 1"
         title="Fridge-to-"
         highlight="Recipe AI"
-        subtitle="Ek photo kheecho — Grok Vision andar ka sab identify karega aur 3 Indian recipes suggest karega jo tum abhi bana sakte ho."
+        subtitle="Ek photo kheecho — AI Vision andar ka sab identify karega aur 3 Indian recipes suggest karega jo tum abhi bana sakte ho."
         Icon={Camera}
       />
 
@@ -111,7 +111,7 @@ export default function FridgeScannerPage() {
               </li>
               <li className="flex gap-2">
                 <span className="font-scribble text-xl font-bold text-phoenix-flame">2.</span>
-                <span>Upload karo — Grok Vision detects every edible item</span>
+                <span>Upload karo — AI Vision detects every edible item</span>
               </li>
               <li className="flex gap-2">
                 <span className="font-scribble text-xl font-bold text-phoenix-flame">3.</span>

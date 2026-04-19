@@ -22,7 +22,7 @@ const features = [
     description:
       "Jab bhi mann bhaari lage — baat karo. Naam, login, kuch nahi chahiye. AI sune ga, samjhe ga, aur safe space de ga.",
     Icon: MessageCircleHeart,
-    bullets: ["Fully anonymous", "Round the clock", "Empathetic Grok-powered"],
+    bullets: ["Fully anonymous", "Round the clock", "Empathetic AI-powered"],
     bg: "bg-sketch-purple/25",
     tilt: "left" as const,
     tape: true,

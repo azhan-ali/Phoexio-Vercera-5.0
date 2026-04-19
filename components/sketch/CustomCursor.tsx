@@ -1,20 +1,29 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isActive, setIsActive] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
+  // High performance motion values (won't trigger react re-renders)
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  
+  // Smooth spring physics for the follower ring
+  const springConfig = { damping: 25, stiffness: 250, mass: 0.5 };
+  const followerX = useSpring(cursorX, springConfig);
+  const followerY = useSpring(cursorY, springConfig);
+
   useEffect(() => {
     const onMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
     };
 
     const onMouseDown = () => setIsActive(true);
     const onMouseUp = () => setIsActive(false);
-
     const onMouseEnter = () => setIsVisible(true);
     const onMouseLeave = () => setIsVisible(false);
 
@@ -33,10 +42,10 @@ const CustomCursor = () => {
       }
     };
 
-    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
     window.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mouseup", onMouseUp);
-    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
     document.body.addEventListener("mouseenter", onMouseEnter);
     document.body.addEventListener("mouseleave", onMouseLeave);
 
@@ -48,27 +57,34 @@ const CustomCursor = () => {
       document.body.removeEventListener("mouseenter", onMouseEnter);
       document.body.removeEventListener("mouseleave", onMouseLeave);
     };
-  }, [isVisible]);
+  }, [isVisible, cursorX, cursorY]);
 
   if (!isVisible) return null;
 
   return (
-    <div className={isActive ? "cursor-active" : ""}>
-      <div
+    <>
+      <motion.div
         className="custom-cursor"
         style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
+          x: cursorX,
+          y: cursorY,
         }}
       />
-      <div
+      <motion.div
         className="cursor-follower"
+        animate={{
+          scale: isActive ? 1.5 : 1,
+          borderColor: isActive ? "#ff4500" : "rgba(26, 26, 26, 0.4)",
+          borderStyle: isActive ? "solid" : "dashed",
+          backgroundColor: isActive ? "rgba(255, 69, 0, 0.05)" : "transparent"
+        }}
+        transition={{ type: "tween", duration: 0.15 }}
         style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
+          x: followerX,
+          y: followerY,
         }}
       />
-    </div>
+    </>
   );
 };
 

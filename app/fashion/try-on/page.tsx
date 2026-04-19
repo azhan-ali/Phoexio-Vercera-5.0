@@ -82,7 +82,7 @@ export default function TryOnPage() {
         eyebrow="Fashion · Feature 5"
         title="Virtual"
         highlight="Try-On"
-        subtitle="Apni photo + outfit photo daalo. Grok AI tumhare traits aur outfit details analyze karke ek naya magazine-quality image generate karega — tum us outfit mein kaise dikhoge."
+        subtitle="Apni photo + outfit photo daalo. AI tumhare traits aur outfit details analyze karke ek naya magazine-quality image generate karega — tum us outfit mein kaise dikhoge."
         Icon={Wand2}
       />
 
@@ -219,9 +219,9 @@ export default function TryOnPage() {
               </SketchHeading>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-note text-sm">
                 {[
-                  ["1. Grok Vision reads you", "Your body type, skin tone, hair, build — described as anonymous traits."],
-                  ["2. Grok Vision reads the outfit", "Garment type, colors, cut, fabric, details — captured precisely."],
-                  ["3. Grok Image paints", "A brand-new photo of you wearing that exact outfit in your chosen scene."],
+                  ["1. AI Vision reads you", "Your body type, skin tone, hair, build — described as anonymous traits."],
+                  ["2. AI Vision reads the outfit", "Garment type, colors, cut, fabric, details — captured precisely."],
+                  ["3. AI Engine paints", "A brand-new photo of you wearing that exact outfit in your chosen scene."],
                 ].map(([t, d]) => (
                   <div key={t} className="flex gap-2 items-start">
                     <DoodleCheck size={18} color="#ff6b35" />

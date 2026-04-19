@@ -189,38 +189,29 @@ html, body {
 /* ===================== CUSTOM CURSOR ===================== */
 .custom-cursor {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: -12px; /* Center by offset instead of transform to avoid framer-motion conflict */
+  left: -12px;
   width: 24px;
   height: 24px;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1a1a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 19l7-7 3 3-7 7-3-3z'/><path d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'/><path d='M2 2l5 5'/><path d='M11 11l1 1'/></svg>");
   background-size: contain;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease-out;
 }
 
 .cursor-follower {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: -20px; /* Center by offset */
+  left: -20px;
   width: 40px;
   height: 40px;
-  border: 2px dashed rgba(26, 26, 26, 0.4);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: transform 0.25s ease-out, border 0.3s ease;
-  filter: url(#sketch-roughen);
+  will-change: transform;
 }
 
-.cursor-active .cursor-follower {
-  transform: translate(-50%, -50%) scale(1.5);
-  border: 2px solid #ff4500;
-  background: rgba(255, 69, 0, 0.05);
-}
+
 
 /* ===================== PREMIUM NAVBAR ===================== */
 .nav-tape {

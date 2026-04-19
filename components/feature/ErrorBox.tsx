@@ -11,7 +11,7 @@ export default function ErrorBox({ message }: { message: string }) {
         <div className="font-bold font-hand text-lg mb-0.5">Something went wrong</div>
         <div className="text-sm text-ink-soft">{message}</div>
         <div className="text-xs text-ink-faded mt-1 italic">
-          check your GROK_API_KEY in .env.local and restart dev server
+          check your API key in .env.local and restart dev server
         </div>
       </div>
     </div>

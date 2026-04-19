@@ -10,17 +10,12 @@ import ScrollProgress from "@/components/landing/ScrollProgress";
 import WavyDivider from "@/components/landing/WavyDivider";
 import {
   DoodleStar,
-  DoodleLightning,
-  DoodleHeart,
 } from "@/components/sketch/Doodles";
 import Link from "next/link";
 import {
   Shirt,
   Utensils,
   HeartPulse,
-  ArrowRight,
-  TrendingUp,
-  Crown,
 } from "lucide-react";
 
 /* ============================================================= */
@@ -209,44 +204,6 @@ export default function Home() {
         </section>
 
 
-        {/* ============ BIG CTA ============ */}
-        <section className="py-14">
-          <Reveal>
-            <SketchCard
-              variant="paper"
-              className="!p-10 md:!p-14 text-center bg-phoenix-flame/15 relative overflow-hidden"
-            >
-              <div className="absolute top-4 left-4 animate-wobble-slow">
-                <DoodleLightning size={42} color="#fcbf49" />
-              </div>
-              <div className="absolute bottom-4 right-4 animate-wobble-slow">
-                <DoodleHeart size={38} color="#e63946" />
-              </div>
-              <div className="absolute top-6 right-10 animate-pulse-soft">
-                <DoodleStar size={30} color="#ff4500" />
-              </div>
-              <TrendingUp size={48} className="mx-auto mb-3 text-phoenix-flame" strokeWidth={2.2} />
-              <SketchHeading as="h2" className="mb-3 !text-4xl md:!text-6xl">
-                Ready to <span className="sketch-highlight">rise?</span>
-              </SketchHeading>
-              <p className="font-hand text-xl text-ink-soft max-w-lg mx-auto mb-6">
-                Free forever. No login drama. Bas shuru karo — Phoenix wait kar raha hai.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link href="/fashion">
-                  <SketchButton variant="flame" size="lg">
-                    Start now <ArrowRight size={20} />
-                  </SketchButton>
-                </Link>
-                <Link href="/premium">
-                  <SketchButton variant="gold" size="lg">
-                    <Crown size={18} /> Unlock Premium
-                  </SketchButton>
-                </Link>
-              </div>
-            </SketchCard>
-          </Reveal>
-        </section>
 
         <Footer />
       </main>

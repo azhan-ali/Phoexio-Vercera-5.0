@@ -29,21 +29,21 @@ export const metadata: Metadata = {
     template: "%s · Phoenix",
   },
   description:
-    "Your AI companion for fashion, food & mental wellness — sketched with love, powered by Grok. Fridge-to-recipe, outfit analyzer, mood journal, and more.",
+    "Your AI companion for fashion, food & mental wellness — sketched with love, powered by Phoenix AI. Fridge-to-recipe, outfit analyzer, mood journal, and more.",
   keywords: [
     "AI fashion",
     "fridge to recipe",
     "mental health AI",
     "Indian nutrition",
-    "Grok",
+    "Phoenix AI",
     "hand-drawn UI",
     "lifestyle AI",
   ],
   authors: [{ name: "Phoenix Team" }],
   openGraph: {
-    title: "Phoenix — Rebirth Yourself",
+    title: "Phoenix | AI Companion",
     description:
-      "AI companion for fashion, food & mental wellness. Sketched with love, powered by Grok.",
+      "AI companion for fashion, food & mental wellness. Sketched with love, powered by Phoenix AI.",
     type: "website",
     locale: "en_IN",
   },
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Phoenix — Rebirth Yourself",
     description:
-      "AI companion for fashion, food & mental wellness. Sketched with love, powered by Grok.",
+      "AI companion for fashion, food & mental wellness. Sketched with love, powered by Phoenix AI.",
   },
   icons: {
     icon: "/phoenix-logo.jpg",

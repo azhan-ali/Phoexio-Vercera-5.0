@@ -11,7 +11,7 @@ const features = [
     title: "Fridge-to-Recipe AI",
     tagline: "ek photo, 3 recipes",
     description:
-      "Fridge ki ek photo kheecho — Grok Vision andar sabko identify karega (tamatar, pyaaz, paneer, etc.) aur 3 Indian recipes suggest karega.",
+      "Fridge ki ek photo kheecho — AI Vision andar sabko identify karega (tamatar, pyaaz, paneer, etc.) aur 3 Indian recipes suggest karega.",
     Icon: Camera,
     bullets: ["Auto-detect ingredients", "Indian recipes priority", "Step-by-step cook guide"],
     bg: "bg-sketch-green/25",

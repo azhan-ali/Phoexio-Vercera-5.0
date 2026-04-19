@@ -59,7 +59,7 @@ export default function TrendRadarPage() {
         eyebrow="Fashion · Feature 2"
         title="Live Trend"
         highlight="Radar"
-        subtitle="Grok live web search — India + global fashion trends, refreshed in real-time from blogs, Bollywood, street style, aur X posts."
+        subtitle="AI live web search — India + global fashion trends, refreshed in real-time from blogs, Bollywood, street style, aur social posts."
         Icon={TrendingUp}
       />
 
@@ -99,7 +99,7 @@ export default function TrendRadarPage() {
 
           {citations.length > 0 && (
             <SketchCard variant="cream" className="!p-4">
-              <div className="font-hand text-sm text-ink-faded mb-2">sources (grok live search):</div>
+              <div className="font-hand text-sm text-ink-faded mb-2">sources (live search):</div>
               <ul className="space-y-1">
                 {citations.map((c, i) => (
                   <li key={i}>

@@ -149,7 +149,7 @@ export default function CirclesPage() {
         <Shield size={22} className="text-sketch-blue shrink-0" />
         <p className="font-note text-sm">
           <strong>community rules:</strong> kindness first · no advice unless asked · no crisis chats
-          here (use <a href="/mental-health/crisis" className="text-phoenix-flame underline">crisis support</a>) · auto-moderation via Grok · you are{" "}
+          here (use <a href="/mental-health/crisis" className="text-phoenix-flame underline">crisis support</a>) · auto-moderation via AI · you are{" "}
           <span className="font-scribble font-bold">{handle}</span> today
         </p>
       </SketchCard>

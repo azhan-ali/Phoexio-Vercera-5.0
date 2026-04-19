@@ -28,15 +28,14 @@ export default function ParallaxDoodle({
   useEffect(() => {
     function onMove(e: MouseEvent) {
       if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = (e.clientX - cx) / window.innerWidth;
-      const dy = (e.clientY - cy) / window.innerHeight;
+      const hw = window.innerWidth / 2;
+      const hh = window.innerHeight / 2;
+      const dx = (e.clientX - hw) / hw;
+      const dy = (e.clientY - hh) / hh;
       mx.set(dx * intensity);
       my.set(dy * intensity);
     }
-    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
     return () => window.removeEventListener("mousemove", onMove);
   }, [mx, my, intensity]);
 

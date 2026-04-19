@@ -34,7 +34,7 @@ const features: { name: string; free: boolean | string; premium: boolean | strin
   { category: "Mental Health", name: "Peer Support Circles", free: true, premium: true },
   { category: "Mental Health", name: "8 Language Support", free: true, premium: true },
   { category: "AI Power", name: "Daily queries", free: "30/day", premium: "Unlimited" },
-  { category: "AI Power", name: "Grok model", free: "grok-2", premium: "grok-4 (latest)" },
+  { category: "AI Power", name: "AI model", free: "Standard", premium: "Premium (latest)" },
   { category: "AI Power", name: "Priority speed", free: false, premium: true },
   { category: "Extras", name: "Early access to new features", free: false, premium: true },
   { category: "Extras", name: "Personalized memory across sessions", free: false, premium: true },
@@ -60,7 +60,7 @@ export default function PremiumPage() {
         eyebrow="Phoenix Premium"
         title="Go"
         highlight="holistic"
-        subtitle="Unlock the holistic-reasoning features — the full outfit+venue+food+music evening planner, mood-aware styling, unlimited queries, and priority Grok-4 speed."
+        subtitle="Unlock the holistic-reasoning features — the full outfit+venue+food+music evening planner, mood-aware styling, unlimited queries, and priority AI speed."
         Icon={Crown}
         accentColor="bg-phoenix-gold/40"
         doodleColors={["#ffba08", "#ff4500", "#9d4edd", "#e63946"]}
@@ -200,7 +200,7 @@ export default function PremiumPage() {
               <strong>Mood-Based Styling</strong> with color psychology
             </BulletYes>
             <BulletYes>Unlimited AI queries</BulletYes>
-            <BulletYes>Grok-4 (priority + faster responses)</BulletYes>
+            <BulletYes>Phoenix Premium AI (priority + faster responses)</BulletYes>
             <BulletYes>Personalized memory across sessions</BulletYes>
             <BulletYes>Early access to new features</BulletYes>
           </ul>
@@ -296,7 +296,7 @@ export default function PremiumPage() {
             },
             {
               q: "Why premium for only 2 fashion features?",
-              a: "Those 2 features are the holistic-reasoning ones — they require bigger context windows and longer Grok responses. Everything else stays free forever because mental health + desi recipes should be universal.",
+              a: "Those 2 features are the holistic-reasoning ones — they require bigger context windows and longer AI processing. Everything else stays free forever because mental health + desi recipes should be universal.",
             },
           ].map((f, i) => (
             <SketchCard key={i} variant="cream" className="!p-4">

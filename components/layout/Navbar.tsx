@@ -12,7 +12,6 @@ const navLinks = [
   { href: "/fashion", label: "Fashion" },
   { href: "/food", label: "Food" },
   { href: "/mental-health", label: "Mind" },
-  { href: "/playground", label: "Playground" },
   { href: "/premium", label: "Premium" },
 ];
 

@@ -2,7 +2,7 @@
 import { Loader2 } from "lucide-react";
 
 const messages = [
-  "Grok is sketching your results…",
+  "AI is sketching your results…",
   "Mixing colors on paper…",
   "Consulting fashion week archives…",
   "Drafting ideas with a pencil…",

@@ -54,7 +54,7 @@ export default function PremiumGate({ featureName, children }: Props) {
         {[
           "Occasion Complete Package",
           "Mood-Based Styling",
-          "Priority Grok models",
+          "Priority AI models",
           "Unlimited queries",
         ].map((b) => (
           <li key={b} className="flex gap-2 items-center">

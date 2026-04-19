@@ -9,7 +9,7 @@ export default function Footer() {
           <PhoenixLogo size={48} animated={false} showText />
           <p className="font-hand text-ink-faded mt-3 max-w-sm">
             Your AI companion for fashion, food & mental wellness. Sketched with love, powered by
-            Grok.
+            Phoenix AI.
           </p>
           <div className="flex gap-3 mt-4">
             {[Mail, Sparkles, Heart].map((Icon, i) => (

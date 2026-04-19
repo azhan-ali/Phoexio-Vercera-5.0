@@ -30,7 +30,7 @@ const features = [
     title: "Trend Radar",
     tagline: "live from the web",
     description:
-      "Grok ka live web search — is week India & globally kya trending hai, aur ye trends tumhare body type ke saath kaise match honge.",
+      "AI ka live web search — is week India & globally kya trending hai, aur ye trends tumhare body type ke saath kaise match honge.",
     Icon: TrendingUp,
     bullets: ["India + global trends", "Seasonal (summer/winter/festive)", "Body-type matched"],
     bg: "bg-sketch-blue/20",
@@ -53,9 +53,9 @@ const features = [
     title: "Virtual Try-On",
     tagline: "see it before you buy",
     description:
-      "Apni photo + outfit ki photo daalo \u2014 Grok AI generate karega ek naya image jisme tum that exact outfit pehne hue ho. Studio / outdoor / wedding \u2014 any vibe.",
+      "Apni photo + outfit ki photo daalo — AI generate karega ek naya image jisme tum that exact outfit pehne hue ho. Studio / outdoor / wedding — any vibe.",
     Icon: Wand2,
-    bullets: ["Grok Vision reads you + outfit", "Grok Image paints the result", "Choose your own scene"],
+    bullets: ["AI Vision reads you + outfit", "AI Image Generator paints the result", "Choose your own scene"],
     bg: "bg-phoenix-flame/15",
     tilt: "left" as const,
     tape: true,
