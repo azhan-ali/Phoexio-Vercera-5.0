@@ -42,6 +42,8 @@ interface GrokChatOptions {
     max_search_results?: number;
     sources?: Array<{ type: "web" | "news" | "x" | "rss"; country?: string }>;
   };
+  // Optional OpenAI-style tools (function calling)
+  tools?: Array<Record<string, unknown>>;
   response_format?: { type: "json_object" | "text" };
 }
 
