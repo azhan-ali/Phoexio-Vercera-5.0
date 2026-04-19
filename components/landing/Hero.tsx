@@ -252,7 +252,7 @@ export default function Hero() {
           {/* The Phoenix */}
           <ParallaxDoodle intensity={15}>
             <div className="relative z-10">
-              <PhoenixLogo size={280} animated />
+              <PhoenixLogo size={320} animated glow />
             </div>
           </ParallaxDoodle>
 
